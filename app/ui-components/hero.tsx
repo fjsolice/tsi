@@ -1,9 +1,8 @@
-"use client";
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const Hero = () => {
-  const videoRef = useRef(null); // Reference to the video element
+  const videoRef = useRef<HTMLVideoElement | null>(null); // Explicitly typing the ref
   const [isPlaying, setIsPlaying] = useState(true); // State to track if the video is playing
 
   // Function to toggle play/pause
