@@ -7,12 +7,50 @@ import Link from "next/link";
 
 const Header = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
-  const toggleDropdown = (menu) => setActiveDropdown(activeDropdown === menu ? null : menu);
+
+  // Define Menu Type
+  type Menu = {
+    label: string;
+    items?: { label: string; href: string }[];
+    href?: string;
+  };
+
+  const toggleDropdown = (menuLabel: string | null) => {
+    setActiveDropdown((prev) => (prev === menuLabel ? null : menuLabel));
+  };
+
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+
+  const menus: Menu[] = [
+    {
+      label: "Programs",
+      items: [
+        { label: "Leadership Immersions", href: "/programs/leadership" },
+        { label: "Topic-Focused Programs", href: "/programs/topic-focused" },
+        { label: "Learning Tracks", href: "/programs/learning-tracks" }
+      ]
+    },
+    {
+      label: "Experience",
+      items: [
+        { label: "Alumni Network", href: "/programs/leadership" },
+        { label: "Blog Posts", href: "/programs/topic-focused" },
+        { label: "FAQs", href: "/programs/learning-tracks" }
+      ]
+    },
+    {
+      label: "Admissions",
+      href: "/admissions"
+    },
+    {
+      label: "Solutions for Organizations",
+      href: "/solutions"
+    }
+  ];
 
   return (
     <header className="sticky top-0 z-50 bg-black text-white shadow-xl">
@@ -89,27 +127,7 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex justify-center space-x-8 items-center">
-              {[{
-                label: "Programs",
-                items: [
-                  { label: "Leadership Immersions", href: "/programs/leadership" },
-                  { label: "Topic-Focused Programs", href: "/programs/topic-focused" },
-                  { label: "Learning Tracks", href: "/programs/learning-tracks" }
-                ]
-              }, {
-                label: "Experience",
-                items: [
-                  { label: "Alumni Network", href: "/programs/leadership" },
-                  { label: "Blog Posts", href: "/programs/topic-focused" },
-                  { label: "FAQs", href: "/programs/learning-tracks" }
-                ]
-              }, {
-                label: "Admissions",
-                href: "/admissions"
-              }, {
-                label: "Solutions for Organizations",
-                href: "/solutions"
-              }].map((menu) => menu.items ? (
+              {menus.map((menu) => (
                 <div
                   key={menu.label}
                   className="relative group"
@@ -119,7 +137,7 @@ const Header = () => {
                   <button className="flex items-center space-x-2 text-gray-300 hover:text-white text-lg">
                     {menu.label} <FiChevronDown />
                   </button>
-                  {activeDropdown === menu.label && (
+                  {activeDropdown === menu.label && menu.items && (
                     <motion.div
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -142,14 +160,6 @@ const Header = () => {
                     </motion.div>
                   )}
                 </div>
-              ) : (
-                <Link
-                  key={menu.label}
-                  href={menu.href}
-                  className="text-gray-300 hover:text-white text-lg"
-                >
-                  {menu.label}
-                </Link>
               ))}
             </nav>
 
@@ -172,27 +182,7 @@ const Header = () => {
               className="bg-black border-t border-gray-700 mt-4"
             >
               <ul className="p-4 space-y-4 text-2xl">
-                {[{
-                  label: "Programs",
-                  items: [
-                    { label: "Leadership Immersions", href: "/programs/leadership" },
-                    { label: "Topic-Focused Programs", href: "/programs/topic-focused" },
-                    { label: "Learning Tracks", href: "/programs/learning-tracks" }
-                  ]
-                }, {
-                  label: "Experience",
-                  items: [
-                    { label: "Alumni Network", href: "/programs/leadership" },
-                    { label: "Blog Posts", href: "/programs/topic-focused" },
-                    { label: "FAQs", href: "/programs/learning-tracks" }
-                  ]
-                }, {
-                  label: "Admissions",
-                  href: "/admissions"
-                }, {
-                  label: "Solutions for Organizations",
-                  href: "/solutions"
-                }].map((menu) => (
+                {menus.map((menu) => (
                   <div key={menu.label}>
                     <button
                       className="flex items-center space-x-2 text-gray-300 hover:text-white text-xl"
@@ -200,19 +190,18 @@ const Header = () => {
                     >
                       {menu.label} <FiChevronDown />
                     </button>
-                    {activeDropdown === menu.label && (
+                    {activeDropdown === menu.label && menu.items && (
                       <ul className="p-2 w-full">
-                        {menu.items &&
-                          menu.items.map((item) => (
-                            <li key={item.label}>
-                              <Link
-                                href={item.href}
-                                className="block px-4 py-2 hover:bg-gray-800"
-                              >
-                                {item.label}
-                              </Link>
-                            </li>
-                          ))}
+                        {menu.items.map((item) => (
+                          <li key={item.label}>
+                            <Link
+                              href={item.href}
+                              className="block px-4 py-2 hover:bg-gray-800"
+                            >
+                              {item.label}
+                            </Link>
+                          </li>
+                        ))}
                       </ul>
                     )}
                   </div>
