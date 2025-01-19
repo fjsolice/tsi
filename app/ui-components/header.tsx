@@ -42,7 +42,7 @@ const Header = () => {
     },
     {
       label: "Admissions",
-      href: "/admissions",
+      href: "/admission",
     },
     {
       label: "Solutions for Organizations",

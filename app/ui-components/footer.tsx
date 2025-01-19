@@ -2,14 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaTwitter,
-  FaTiktok,
-  FaYoutube,
-} from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter, FaTiktok, FaYoutube } from "react-icons/fa";
+import Link from "next/link";
 
 const Footer: React.FC = () => {
   return (
@@ -43,10 +37,10 @@ const Footer: React.FC = () => {
         {/* Column 3: Links */}
         <div>
           <ul className="space-y-3">
-          <li>
-              <a href="#" className="underline hover:text-gray-400">
+            <li>
+              <Link href="/contact-us" className="underline hover:text-gray-400">
                 Contact Us
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#" className="underline hover:text-gray-400">
@@ -54,7 +48,7 @@ const Footer: React.FC = () => {
               </a>
             </li>
             <li>
-              <a href="#" className="underline hover:text-gray-400">
+              <a href="/email-subscribe" className="underline hover:text-gray-400">
                 Subscribe to Our Emails
               </a>
             </li>
