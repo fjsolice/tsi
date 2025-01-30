@@ -6,6 +6,12 @@ import { Fragment } from "react";
 import { HiOutlineChevronDown, HiMenu, HiX } from "react-icons/hi";
 import Link from "next/link";
 
+// Define a specific type for menu items
+type MenuItem = {
+  label: string;
+  link: string;
+};
+
 const PartnersNavigationHeader = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -156,7 +162,7 @@ const PartnersNavigationHeader = () => {
 };
 
 /* Dropdown Menu Component */
-const DropdownMenu = ({ title, items }: { title: string; items: any[] }) => {
+const DropdownMenu = ({ title, items }: { title: string; items: MenuItem[] }) => {
   return (
     <Menu as="div" className="relative">
       <Menu.Button className="flex items-center text-gray-800 hover:text-indigo-600 transition duration-200">
@@ -198,7 +204,7 @@ const MobileDropdownMenu = ({
   items,
 }: {
   title: string;
-  items: any[];
+  items: MenuItem[];
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -231,4 +237,3 @@ const MobileDropdownMenu = ({
 };
 
 export default PartnersNavigationHeader;
-
