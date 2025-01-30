@@ -17,15 +17,15 @@ const Login = () => {
       {/* Header Section */}
       <header className="bg-black text-white py-16 text-center">
         <motion.div
-          className="text-6xl lg:text-8xl font-bold tracking-wider"
+          className="text-4xl lg:text-6xl font-bold tracking-wider"
           initial={{ x: -300 }}
           animate={{ x: 0 }}
           transition={{ duration: 1 }}
         >
-          TSI
+          Tanzania School of Investments
         </motion.div>
         <motion.h1
-          className="text-4xl lg:text-6xl font-bold mt-4"
+          className="text-2xl lg:text-4xl font-bold mt-4"
           initial={{ x: 300 }}
           animate={{ x: 0 }}
           transition={{ duration: 1 }}

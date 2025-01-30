@@ -27,15 +27,17 @@ const Header = () => {
     {
       label: "Programs",
       items: [
-        { label: "Leadership Immersions", href: "/programs/leadership" },
-        { label: "Topic-Focused Programs", href: "/programs/topic-focused" },
-        { label: "Learning Tracks", href: "/programs/learning-tracks" },
+        { label: "Portifolio Structuring Programs", href: "/programs/programs" },
+        { label: "Educational Courses", href: "/programs/courses" },
+        { label: "Subscription Programs/Plans", href: "/programs/subscription-plans" },
       ],
     },
     {
       label: "Experience",
       items: [
+        { label: "Corperate Social Responsibility", href: "/experience/corparate-social-repsonsibility" },
         { label: "Alumni Network", href: "/experience/alumni" },
+        { label: "Life at TSI", href: "/experience/life-at-tsi" },
         { label: "Blog Posts", href: "/experience/blog" },
         { label: "FAQs", href: "/experience/faqs" },
       ],
@@ -45,8 +47,8 @@ const Header = () => {
       href: "/admission",
     },
     {
-      label: "Solutions for Organizations",
-      href: "/solutions",
+      label: "Become Our Partner",
+      href: "/become-partners",
     },
   ];
 
