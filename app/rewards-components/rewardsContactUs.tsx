@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion"; // For animations
+import { motion } from "framer-motion";
 
 const RewardsContactUs: React.FC = () => {
   // Animation variants for section
@@ -43,13 +43,13 @@ const RewardsContactUs: React.FC = () => {
           className="text-xl mb-12 text-gray-800"
           variants={buttonVariants}
         >
-          We’re Just Seconds Away!
+          We&rsquo;re Just Seconds Away!
         </motion.p>
         <motion.p
           className="text-lg text-gray-600 mb-12"
           variants={buttonVariants}
         >
-          If you have a question about the program, feel free to contact us and we'll be happy to help.
+          If you have a question about the program, feel free to contact us and we&rsquo;ll be happy to help.
         </motion.p>
 
         {/* Contact Us Card */}
@@ -58,7 +58,7 @@ const RewardsContactUs: React.FC = () => {
           variants={buttonVariants}
         >
           <motion.div className="flex justify-center">
-            <button className="px-8 py-3 bg-indigo-600 text-white font-semibold rounded-full shadow-lg transform hover:scale-110 transition-all duration-300">
+            <button className="px-8 py-3 bg-indigo-600 text-white font-semibold rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
               Contact Us
             </button>
           </motion.div>

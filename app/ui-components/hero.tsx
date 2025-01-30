@@ -1,6 +1,7 @@
 "use client"
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null); // Explicitly typing the ref
@@ -40,7 +41,7 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <img
+            <Image
               src="/images/im1.jpg"
               alt=""
               className="rounded-lg shadow-lg h-[500px] object-cover w-full"
@@ -79,7 +80,7 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <img
+            <Image
               src="/images/im2.jpg"
               alt=""
               className="rounded-lg shadow-lg h-[500px] object-cover w-full"

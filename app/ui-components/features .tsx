@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const Features = () => {
   // Data for the features
@@ -55,7 +56,7 @@ const Features = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 {/* Feature Image */}
-                <img
+                <Image
                   src={feature.image}
                   alt={feature.title}
                   className="rounded-lg shadow-md w-80 h-64 object-cover mb-4"

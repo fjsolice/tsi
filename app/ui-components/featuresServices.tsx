@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const FeaturesServices: React.FC = () => {
   return (
@@ -14,7 +15,7 @@ const FeaturesServices: React.FC = () => {
       <div className="flex flex-col lg:flex-row gap-6">
         {/* First Column - Image */}
         <div className="lg:w-1/4">
-          <img
+          <Image
             src="/images/learning-experience.jpg"
             alt="Learning Experience"
             className="rounded-lg shadow-lg"
