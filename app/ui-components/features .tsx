@@ -8,23 +8,23 @@ const Features = () => {
   // Data for the features
   const features = [
     {
-      title: "Leadership Immersions",
+      title: "Investing is for Everyone",
       description:
-        "A broad business and leadership curriculum is only the beginning. Enter with an open mind. Emerge transformed.",
+        "We break the myth that investing is only for the wealthy—anyone can build wealth with the right knowledge and strategy.",
       image: "/images/leadership.jpg",
       link: "/leadership-immersions",
     },
     {
-      title: "Topic-Focused Programs",
+      title: "Learn, Trade, and Grow",
       description:
-        "When your challenges call for targeted, in-depth learning, we have the programs you need.",
+        "We provide structured education to help individuals and professionals master capital markets and become confident traders.",
       image: "/images/topic-focused.jpg",
       link: "/topic-focused-programs",
     },
     {
-      title: "Learning Tracks",
+      title: "Smart Investing, Expert Guidance",
       description:
-        "Learning plans that build specific competencies to advance your development goals.",
+        "For those without the time to study, we offer tailored portfolio structuring solutions to help them invest wisely.",
       image: "/images/learning-tracks.jpg",
       link: "/learning-tracks",
     },
@@ -42,8 +42,7 @@ const Features = () => {
       <div className="container mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <h2 className="text-4xl lg:text-5xl font-bold text-left text-gray-800 mb-12">
-          We prepare and propel leaders to achieve the next elevation—for their
-          organizations and for themselves.
+          We educate and empower investors, professionals, and organizations to navigate capital markets with confidence, strategy, and expertise.
         </h2>
 
         {/* Features Grid */}
@@ -59,6 +58,8 @@ const Features = () => {
                 <Image
                   src={feature.image}
                   alt={feature.title}
+                  width={320} // Explicit width
+                  height={256} // Explicit height
                   className="rounded-lg shadow-md w-80 h-64 object-cover mb-4"
                 />
 

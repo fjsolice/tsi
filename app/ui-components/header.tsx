@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX, FiChevronDown } from "react-icons/fi";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaTiktok, FaYoutube } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 
 const Header = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -27,7 +28,7 @@ const Header = () => {
     {
       label: "Programs",
       items: [
-        { label: "Portifolio Structuring Programs", href: "/programs/programs" },
+        { label: "Portifolio Structuring Programs", href: "/portfolio-management" },
         { label: "Educational Courses", href: "/programs/courses" },
         { label: "Subscription Programs/Plans", href: "/programs/subscription-plans" },
       ],
@@ -36,7 +37,7 @@ const Header = () => {
       label: "Experience",
       items: [
         { label: "Corperate Social Responsibility", href: "/experience/corparate-social-repsonsibility" },
-        { label: "Alumni Network", href: "/experience/alumni" },
+        { label: "Alumni Network", href: "alumni-network" },
         { label: "Life at TSI", href: "/experience/life-at-tsi" },
         { label: "Blog Posts", href: "/experience/blog" },
         { label: "FAQs", href: "/experience/faqs" },
@@ -140,7 +141,13 @@ const Header = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <Link href="/" className="text-3xl font-bold tracking-wide text-white">
-              TSI
+              <Image
+                src="/images/tsi.png"
+                width={50}
+                height={50}
+                alt="TSI Logo"
+                className="w-12 h-12"
+              />
             </Link>
 
             <nav className="hidden md:flex justify-center space-x-8 items-center">

@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+"use client"
 import React from "react";
 import {
   FaInstagram,
@@ -8,6 +9,7 @@ import {
   FaYoutube,
   FaTiktok,
 } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const PartnersFooter: React.FC = () => {
   return (
@@ -111,6 +113,22 @@ const PartnersFooter: React.FC = () => {
             className="h-12 object-contain"
           />
         </div>
+        <div className="border-t mt-10 border-gray-700"></div>
+
+        {/* Disclaimer Section */}
+        <motion.div
+          className="px-6 sm:px-12 md:px-16 py-6 text-sm text-gray-400 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <p>
+            <strong>Disclaimer:</strong> Tanzania School of Investments is a licensed educational and advisory firm
+            committed to providing accurate and professional insights on capital markets. While we offer educational
+            resources and investment guidance, trading CFDs and global financial instruments carries inherent risks.
+            Past performance is not indicative of future results, and investments should be made with careful consideration.
+          </p>
+        </motion.div>
       </div>
     </footer>
   );
