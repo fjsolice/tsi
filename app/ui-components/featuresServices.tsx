@@ -51,7 +51,7 @@ const FeaturesServices: React.FC = () => {
           <div>
             <h3 className="text-2xl font-semibold text-gray-900">Diverse Learning Environment</h3>
             <p className="mt-4 text-gray-700 leading-relaxed">
-              We believe diverse perspectives strengthen learning. In our classes, you'll engage with global peers from various industries, sharpening your thinking and preparing you to lead in todays dynamic markets. We collaborate with clients as partners to craft tailored investment solutions.
+              We believe diverse perspectives strengthen learning. In our classes, you will engage with global peers from various industries, sharpening your thinking and preparing you to lead in todays dynamic markets. We collaborate with clients as partners to craft tailored investment solutions.
             </p>
           </div>
         </div>
