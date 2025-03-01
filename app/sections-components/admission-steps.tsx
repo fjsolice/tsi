@@ -4,34 +4,34 @@ import { motion } from "framer-motion";
 
 const steps = [
   {
-    title: "Understand our offerings",
+    title: "Explore Our Offerings",
     description:
-      "Our executive development programs enable you to deepen your knowledge, broaden your skill set, and collaborate with a global network of peers. To compare and narrow down your program options, utilize our program finder or consult with our Program Advising team for a personalized recommendation.",
+      "Our programs cover a wide range of financial education topics, from personal finance and investment strategies to business finance and wealth management. Designed for all experience levels, our courses combine structured learning with real-world application. Explore our course catalog or consult our Admissions team for a tailored recommendation.",
   },
   {
-    title: "Submit an application",
+    title: "Submit Your Application",
     description:
-      "Before you submit your application, please be sure you have answered all the questions thoroughly and have printed or saved your application for your records. Your application and all required documents must be received before you will be considered for program admission. While each program has its own distinct application, view this sample version to help you prepare. Some programs require additional supporting materials, so please read the admissions requirements for your selected program thoroughly.",
+      "Complete and submit your application, ensuring all details are accurate. Each program has specific admission requirements, so review them carefully before applying. Applications are reviewed on a rolling basis, and early submission is encouraged to secure your spot.",
   },
   {
-    title: "Go through the admissions process",
+    title: "Fast-Track Your Onboarding",
     description:
-      "Candidates are admitted on a rolling, space-available basis and typically will receive their admissions decision within four to six weeks. Select programs have application deadlines, as noted on the program page on our website. For all programs, early application is strongly encouraged. To view your application in progress and track your admissions status, log in to your account home page.",
+      "Once accepted, you'll complete the onboarding process within a week, giving you immediate access to learning materials, case studies, and interactive tools. Our Program Delivery team will ensure you are fully prepared to start your journey.",
   },
   {
-    title: "Submit your payment",
+    title: "Begin Your Learning & Practical Application",
     description:
-      "Upon acceptance into a program, you'll receive an electronic invoice from our Finance department that is payable within 30 days of receipt, or upon receipt of the invoice if the program start date is fewer than 30 days from the invoice date. Please review the payment policies and the steps for cancelling or deferring participation under Admissions Quick Facts below.",
+      "Courses typically span 1 to 4 months, combining intensive learning with hands-on experience. You'll apply concepts in real market scenarios, develop financial strategies, and refine your decision-making skills.",
   },
   {
-    title: "Make the most of your experience",
+    title: "Ongoing Mentorship & Portfolio Management",
     description:
-      "Our Program Delivery team will be your primary point of contact before and during the program. About three weeks before your program starts, you will receive a link to the Learning Community, which gives you access to relevant case studies and a detailed program schedule.",
+      "After completing the course, our support doesn’t stop. For the rest of the year, you'll receive close mentorship, helping you apply your knowledge in real-world financial decisions. With expert guidance, you'll create and manage your portfolio while learning how to navigate different economic conditions with confidence.",
   },
   {
-    title: "Continue the conversation",
+    title: "Join Our Financial Learning Network",
     description:
-      "Once you complete a program, you become part of the extended HBS Executive Education community. Our Program Advising team will continue to be a resource as you consider future programs at HBS. To stay connected subscribe to our newsletter to receive the latest HBS Executive Education news, announcements, and thought leadership. You can also follow us on LinkedIn, Instagram, Facebook, and YouTube.",
+      "Graduating from a TSI program connects you to an exclusive Alumni Network, where you’ll gain continuous access to expert insights, investment discussions, and mentorship opportunities. Stay engaged through exclusive events, networking opportunities, and expert-led sessions. Subscribe to our newsletter for financial insights, and follow us on LinkedIn, Instagram, and Twitter for the latest updates.",
   },
 ];
 

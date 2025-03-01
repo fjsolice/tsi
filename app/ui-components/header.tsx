@@ -29,8 +29,8 @@ const Header = () => {
       label: "Programs",
       items: [
         { label: "Portifolio Structuring Programs", href: "/portfolio-management" },
-        { label: "Educational Courses", href: "/programs/courses" },
-        { label: "Subscription Programs/Plans", href: "/programs/subscription-plans" },
+        { label: "Educational Courses", href: "/courses" },
+        { label: "Subscription Programs/Plans", href: "/subscription-plans" },
       ],
     },
     {

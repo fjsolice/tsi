@@ -19,8 +19,7 @@ const TopSection = () => {
 
         {/* Subtitle */}
         <p className="mt-12 text-2xl md:text-4xl leading-relaxed text-gray-300">
-          If you have a proven track record of business success and leadership
-          potential, then TSI Executive Education may be right for you.
+        Whether you are an aspiring investor, a business professional, or someone looking to master financial decision-making, Tanzania School of Investments (TSI) offers world-class education to help you build and sustain wealth. Our expert-led programs provide the knowledge, practical skills, and mentorship needed to navigate financial markets with confidence.
         </p>
 
         {/* Call-to-Action Button */}

@@ -97,7 +97,7 @@ const AdmissionQuickFacts = () => {
               href="mailto:exed_admissions@hbs.edu"
               className="text-indigo-600 underline"
             >
-              exed_admissions@tsi.co.tz
+              admissions@tsi.co.tz
             </a>
           </p>
           <p className="text-gray-700">
@@ -106,7 +106,7 @@ const AdmissionQuickFacts = () => {
           </p>
           <p className="text-lg italic text-gray-700 mt-6">
             In accordance with Tanzania School of Investment policy, Tanzania
-            School of Investment does not discriminate against any person on the basis of
+            School of Investments does not discriminate against any person on the basis of
             race, color, sex or sexual orientation, gender identity, religion,
             age, national or ethnic origin, political beliefs, veteran status,
             or disability in admission to, access to, treatment in, or
