@@ -105,7 +105,7 @@ const LifeAtTsi = () => {
           variants={fadeIn}
           className="text-4xl md:text-5xl font-bold text-center mb-16"
         >
-          A Day in the Life
+          Working at TSI
         </motion.h2>
         <div className="space-y-12">
           {[
