@@ -37,8 +37,8 @@ const BecomePartnerTopSection = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          Partner With a Global Leader in <br />
-          Conversion and Retention
+          Partner with Tanzania’s Leading Investment <br />
+          Education & Advisory Firm
         </motion.h1>
 
         {/* Description */}
@@ -48,8 +48,7 @@ const BecomePartnerTopSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-          Join over 200,000 partners who are succeeding with TSI at their side and 
-          enjoying some of the highest payouts in the industry.
+          Join 5,000+ partners driving success with TSI, guiding 10,000+ students and managing over USD 10M in investment portfolios while earning top industry rewards
         </motion.p>
 
         {/* Button */}

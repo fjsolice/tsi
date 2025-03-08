@@ -30,7 +30,7 @@ const LifeAtTsi = () => {
           variants={fadeIn}
         >
           <h1 className="text-5xl md:text-7xl font-bold mb-6 drop-shadow-lg">Life at TSI</h1>
-          <p className="text-lg md:text-xl mb-10 text-gray-300">
+          <p className="text-lg md:text-xl mb-10 text-gray-300 font-bold">
             Experience the vibrant community, innovative learning, and inspiring environment at Tanzania School of Investments.
           </p>
           <Link href="#gallery">
@@ -109,10 +109,10 @@ const LifeAtTsi = () => {
         </motion.h2>
         <div className="space-y-12">
           {[
-            { src: "/images/tsi-cafeteria.jpg", alt: "Cafeteria", desc: "Enjoying meals and conversations at the TSI cafeteria.", reverse: false },
-            { src: "/images/tsi-sports.jpg", alt: "Sports", desc: "Staying active with sports and recreation on campus.", reverse: true },
-            { src: "/images/tsi-workshop.jpg", alt: "Workshop", desc: "Hands-on workshops to sharpen investment skills.", reverse: false },
-            { src: "/images/tsi-night-study.jpg", alt: "Night Study", desc: "Late-night study sessions in a supportive environment.", reverse: true },
+            { src: "/images/tsi-cafeteria.jpg", alt: "Our Pioneering Work Culture", desc: "At Tanzania School of Investments, we embrace transparency, innovation, and data-driven decision-making. Open feedback, continuous learning, and shared knowledge drive our success, empowering every member to uphold excellence and accountability in the financial markets.", reverse: false },
+            { src: "/images/tsi-sports.jpg", alt: "Internship Opportunities at TSI", desc: "Explore our investment internship programs, full-time roles, and opportunities designed to give you hands-on experience and in-depth exposure to Tanzania School of Investments' unique approach to capital markets and portfolio management. Gain valuable insights while working alongside industry experts.", reverse: true },
+            { src: "/images/tsi-workshop.jpg", alt: "Spotlight on Investment", desc: "At Tanzania School of Investments, our investment team focuses on understanding the key drivers of capital markets and using that knowledge to build high-quality portfolios and provide expert investment advice to our clients.", reverse: false },
+            { src: "/images/tsi-night-study.jpg", alt: "Diversity, Equity & Inclusion: Essential to Our Success", desc: "At Tanzania School of Investments, we strive to create a vibrant meritocracy, driven not only by talent but also by a diverse range of perspectives. We believe that diversity in background, identity, and experience enriches our ideas and solutions. Inclusion is key to unlocking the full potential of this diversity, ensuring every voice is heard and every idea has the opportunity to thrive. Our commitment to equity ensures fair structures that reinforce our dedication to merit-based growth and excellence.", reverse: true },
           ].map((photo, idx) => (
             <motion.div
               key={idx}
@@ -143,8 +143,20 @@ const LifeAtTsi = () => {
           variants={fadeIn}
           className="text-4xl md:text-5xl font-bold text-center mb-16"
         >
-          Moments at TSI
+          Meaningful Relationships
         </motion.h2>
+
+        {/* Description */}            
+        <div className="flex items-center justify-center text-center">
+          <motion.p
+            className="text-2xl md:text-2xl text-center max-w-7xl mb-8"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+        >
+            We believe that meaningful relationships are just as important as meaningful work they go hand in hand. Our focus on fostering an inclusive environment is essential to building a strong, connected community. We support organic relationship-building through company events and initiatives, offering a variety of opportunities for engagement, from investment workshops to social gatherings and professional development groups. Whether it’s networking, learning, or team-building, we encourage everyone to be part of our vibrant community.
+          </motion.p>
+        </div>
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             "/images/tsi-graduation.jpg",
