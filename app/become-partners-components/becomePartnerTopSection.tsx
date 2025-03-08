@@ -10,7 +10,7 @@ const BecomePartnerTopSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/line-graph.jpg" // Replace with the actual image path
+          src="/images/become-partner-hero.jpg" // Replace with the actual image path
           alt="Partner Background"
           fill
           objectFit="cover"
