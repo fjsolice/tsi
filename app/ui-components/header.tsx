@@ -36,11 +36,10 @@ const Header = () => {
     {
       label: "Experience",
       items: [
-        { label: "Corperate Social Responsibility", href: "/experience/corparate-social-repsonsibility" },
+        { label: "Corperate Social Responsibility", href: "/corparate-social-repsonsibility" },
         { label: "Alumni Network", href: "alumni-network" },
-        { label: "Life at TSI", href: "/experience/life-at-tsi" },
-        { label: "Blog Posts", href: "/experience/blog" },
-        { label: "FAQs", href: "/experience/faqs" },
+        { label: "Life at TSI", href: "/life-at-tsi" },
+        { label: "FAQs", href: "/faqs" },
       ],
     },
     {
@@ -58,7 +57,7 @@ const Header = () => {
       <div className="bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-2">
           <span className="text-sm font-semibold tracking-wide text-gray-400">
-            Executive Education
+            Tanzania School of Investments
           </span>
           <div className="flex items-center space-x-4">
             <Link
