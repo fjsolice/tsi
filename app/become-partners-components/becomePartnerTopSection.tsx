@@ -14,7 +14,7 @@ const BecomePartnerTopSection = () => {
           alt="Partner Background"
           fill
           objectFit="cover"
-          style={{ marginTop: "170px"}}
+          style={{ marginTop: "110px"}}
         />
       </div>
 
