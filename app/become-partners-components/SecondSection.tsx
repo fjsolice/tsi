@@ -19,7 +19,7 @@ const SecondSection = () => {
   ];
 
   return (
-    <div className="bg-white py-16 px-6 lg:px-20">
+    <div className="bg-gray-100 py-16 px-6 lg:px-20">
       <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Section */}
         <div className="space-y-6">

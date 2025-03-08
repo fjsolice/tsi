@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const BecomePartnerTopSection = () => {
   return (
-    <div className="relative bg-black text-white min-h-[80vh] rounded-b-[4rem] overflow-hidden">
+    <div className="relative bg-gray-100 text-black min-h-[100vh] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -14,7 +14,7 @@ const BecomePartnerTopSection = () => {
           alt="Partner Background"
           fill
           objectFit="cover"
-          className="opacity-40"
+          style={{ marginTop: "170px"}}
         />
       </div>
 
@@ -32,13 +32,10 @@ const BecomePartnerTopSection = () => {
 
         {/* Big Header */}
         <motion.h1
-          className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
+          className="text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          style={{
-            textShadow: "0 10px 20px rgba(255, 255, 255, 0.2), 0 4px 10px rgba(0, 0, 0, 0.8)",
-          }}
         >
           Partner With a Global Leader in <br />
           Conversion and Retention
@@ -46,7 +43,7 @@ const BecomePartnerTopSection = () => {
 
         {/* Description */}
         <motion.p
-          className="text-gray-300 text-lg max-w-2xl mb-8"
+          className="text-black text-lg max-w-2xl mb-8"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
