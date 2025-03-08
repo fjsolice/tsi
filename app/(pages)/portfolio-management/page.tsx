@@ -24,7 +24,7 @@ interface Stats {
 
 const PortfolioManagement = () => {
   const [stockData, setStockData] = useState<Stock[]>([]);
-  const [stats] = useState<Stats>({
+  const [] = useState<Stats>({
     trained: 5000,
     coached: 100000,
     loans: 3400000,
