@@ -26,7 +26,7 @@ const Header = () => {
 
   const menus: Menu[] = [
     {
-      label: "Programs",
+      label: "Our Solutions",
       items: [
         { label: "Portifolio Structuring Programs", href: "/portfolio-management" },
         { label: "Educational Courses", href: "/courses" },
@@ -85,7 +85,7 @@ const Header = () => {
           className="bg-black border-t border-gray-700"
         >
           <ul className="p-4 space-y-4 text-3xl">
-            {["About", "Insights", "Recruiting", "Baker Library", "Initiatives", "Make a Gift"].map(
+            {["About", "Insights", "Recruiting", "Initiatives", "Make a Gift"].map(
               (item) => (
                 <li key={item}>
                   <Link
