@@ -1,32 +1,42 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/app/ui-components/header";
 import Footer from "@/app/ui-components/footer";
 
 // Animation variants
-const fadeIn = {
+const fadeIn: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, scale: 0.9 },
   visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } },
   hover: { scale: 1.05, transition: { duration: 0.3 } },
 };
 
+// Define the BlogPost type
+interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  image: string;
+  date: string;
+}
+
 const Insights = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const postsPerPage = 6;
 
   // Sample blog posts data
-  const blogPosts = [
+  const blogPosts: BlogPost[] = [
     {
       id: "1",
       title: "The Future of Investment in Tanzania",
@@ -79,8 +89,9 @@ const Insights = () => {
 
   // Filter and search logic
   const filteredPosts = blogPosts.filter((post) => {
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -91,7 +102,7 @@ const Insights = () => {
   const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
-  const categories = ["All", "Investment", "Education", "Sustainability", "Alumni"];
+  const categories: string[] = ["All", "Investment", "Education", "Sustainability", "Alumni"];
 
   return (
     <div className="w-full min-h-screen bg-black text-white">
