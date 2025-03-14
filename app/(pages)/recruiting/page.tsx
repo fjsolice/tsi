@@ -59,7 +59,7 @@ const Recruiting = () => {
     },
   ];
 
-  // Sample testimonials
+  // Sample testimonials with escaped quotes
   const testimonials = [
     {
       name: "Godliver Evod",
@@ -252,7 +252,8 @@ const Recruiting = () => {
                   <p className="text-gray-500">{testimonial.role}</p>
                 </div>
               </div>
-              <p className="text-gray-300 italic">"{testimonial.quote}"</p>
+              {/* Fixed: Using curly braces to wrap the quote */}
+              <p className="text-gray-300 italic">{`"${testimonial.quote}"`}</p>
             </motion.div>
           ))}
         </div>
