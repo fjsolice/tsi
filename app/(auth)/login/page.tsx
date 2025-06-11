@@ -1,15 +1,65 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { supabase } from "../../lib/supabase";
 import Footer from "@/app/ui-components/footer";
-import { FaGoogle, FaApple } from "react-icons/fa";
 
 const Login = () => {
-  const [role, setRole] = useState<"student" | "investor">("student");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
-  const handleRoleChange = (selectedRole: "student" | "investor") => {
-    setRole(selectedRole);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setMessage(null);
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      console.log("Login response:", { data, error }); // Debug log
+
+      if (error) {
+        if (error.message.includes("Email not confirmed")) {
+          // Attempt to re-signup to ensure account is active without confirmation
+          const { error: signupError } = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+              // Omit emailRedirectTo to disable email confirmation redirection
+            },
+          });
+          if (signupError) throw signupError;
+          setMessage("Account re-activated. Please log in again.");
+        } else {
+          throw error;
+        }
+      }
+
+      // Verify session and redirect to dashboard on success
+      if (data.session) {
+        setMessage("Login successful! Redirecting to dashboard...");
+        setTimeout(() => router.push("/dashboard"), 1000); // Redirect after 1 second
+        setEmail("");
+        setPassword("");
+      } else {
+        throw new Error("Login successful but no session created. Please try again.");
+      }
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "An unknown error occurred during login";
+      setMessage(errorMessage);
+      console.error("Error details:", error instanceof Error ? error : { error });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -52,90 +102,58 @@ const Login = () => {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          {/* Role Selection */}
-          <div className="flex justify-center mb-6">
-            <button
-              onClick={() => handleRoleChange("student")}
-              className={`px-4 py-2 rounded-l-lg font-medium ${
-                role === "student"
-                  ? "bg-indigo-600 text-white"
-                  : "bg-gray-200 text-gray-800"
-              }`}
-              aria-pressed={role === "student"}
-            >
-              Student
-            </button>
-            <button
-              onClick={() => handleRoleChange("investor")}
-              className={`px-4 py-2 rounded-r-lg font-medium ${
-                role === "investor"
-                  ? "bg-indigo-600 text-white"
-                  : "bg-gray-200 text-gray-800"
-              }`}
-              aria-pressed={role === "investor"}
-            >
-              Investor
-            </button>
-          </div>
-
-          {/* Login Form */}
-          <form className="space-y-6">
-            {["email", "password"].map((field) => (
-              <div key={field} className="flex flex-col">
-                <label
-                  htmlFor={field}
-                  className="text-sm font-medium capitalize"
-                >
-                  {field}
-                </label>
-                <input
-                  id={field}
-                  type={field === "password" ? "password" : "text"}
-                  className="mt-1 p-2 border rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  placeholder={`Enter your ${field}`}
-                />
-              </div>
-            ))}
+          {message && (
+            <p className={`text-center mb-4 ${message.includes("successful") ? "text-green-600" : "text-red-600"}`}>
+              {message}
+            </p>
+          )}
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            <div className="flex flex-col">
+              <label htmlFor="email" className="text-sm font-medium capitalize">
+                Email
+              </label>
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="mt-1 p-2 border rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="password" className="text-sm font-medium capitalize">
+                Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="mt-1 p-2 border rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
 
             <div className="flex justify-between items-center text-sm">
-              <a
-                href="#"
-                className="text-indigo-600 hover:underline focus:underline"
-              >
+              <a href="/reset-password" className="text-indigo-600 hover:underline focus:underline">
                 Forgot password?
               </a>
-              <a
-                href="/signup"
-                className="text-indigo-600 hover:underline focus:underline"
-              >
+              <a href="/signup" className="text-indigo-600 hover:underline focus:underline">
                 Don’t have an account? Sign Up
               </a>
             </div>
 
-            {/* Social Login */}
-            <div className="flex justify-center space-x-4 my-4">
-              {[
-                { icon: <FaGoogle />, text: "Google" },
-                { icon: <FaApple />, text: "Apple" },
-              ].map(({ icon, text }) => (
-                <button
-                  key={text}
-                  className="flex items-center px-4 py-2 border rounded-lg shadow-md hover:shadow-lg focus:ring-2 focus:ring-indigo-500"
-                >
-                  {icon}
-                  <span className="ml-2 text-sm">{`Sign in with ${text}`}</span>
-                </button>
-              ))}
-            </div>
-
-            {/* Login Button */}
             <motion.button
               type="submit"
               className="bg-indigo-600 text-white py-2 px-4 rounded-lg w-full font-medium hover:bg-indigo-700 focus:bg-indigo-700"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              disabled={isLoading}
             >
-              Login
+              {isLoading ? "Logging in..." : "Login"}
             </motion.button>
           </form>
         </motion.div>
