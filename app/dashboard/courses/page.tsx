@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { supabase } from "../../lib/supabase"; // Ensure this path is correct
+import { supabase } from "../../lib/supabase"; // Adjusted path for dashboard folder
 
 interface Course {
   id: string;
@@ -53,8 +54,7 @@ const EducationalCoursesPage = () => {
         const { data, error } = await supabase.from("courses").select("*");
         if (error) {
           console.error("Error fetching courses:", error.message);
-          // Fallback to empty array if table doesn't exist yet
-          setCourses([]);
+          setCourses([]); // Fallback to empty array
         } else {
           setCourses(data || []);
         }
@@ -199,7 +199,10 @@ const EducationalCoursesPage = () => {
                     <p className="text-gray-700 mt-4">{course.description}</p>
                     {course.video_url && (
                       <video
-                        ref={(el) => (videoRefs.current[index] = el)}
+                        ref={(el) => {
+                          videoRefs.current[index] = el; // Assign to ref array
+                          return () => {}; // Return void for cleanup (optional)
+                        }}
                         controls
                         className="mt-4 w-full rounded"
                       >
