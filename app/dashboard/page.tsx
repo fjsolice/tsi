@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { supabase } from "../lib/supabase"; // Correct path for app/lib/supabase.js
+import { supabase } from "../lib/supabase"; // Adjusted path for dashboard folder
 
 const DashboardPage = () => {
   const [username, setUsername] = useState("Loading...");

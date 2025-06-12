@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
-import { supabase } from "../../lib/supabase";
+import { supabase } from "../../lib/supabase"; // Adjusted path for auth folder
 import Footer from "@/app/ui-components/footer";
 
-const SignUp = () => {
+const SignUpContent = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -203,6 +203,14 @@ const SignUp = () => {
       {/* Footer */}
       <Footer />
     </div>
+  );
+};
+
+const SignUp = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SignUpContent />
+    </Suspense>
   );
 };
 
