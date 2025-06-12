@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../lib/supabase"; // Adjusted path for dashboard folder
@@ -18,12 +18,17 @@ const SettingsPage = () => {
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const subscriptionRef = useRef<any>(null); // Store subscription to unsubscribe later
 
   useEffect(() => {
+    let isMounted = true; // Flag to prevent state updates after unmount
+
     const fetchUserData = async () => {
+      if (!isMounted) return;
+
       const { data: session, error: sessionError } = await supabase.auth.getSession();
       if (sessionError || !session?.session) {
-        setMessage("Please log in to view settings.");
+        if (isMounted) setMessage("Please log in to view settings.");
         return;
       }
 
@@ -34,44 +39,57 @@ const SettingsPage = () => {
         .eq("id", userId)
         .single();
       if (userError) {
-        setMessage("Error fetching user data.");
-        console.error("User data fetch error:", userError.message || userError);
+        if (isMounted) {
+          setMessage("Error fetching user data.");
+          console.error("User data fetch error:", userError.message || userError);
+        }
       } else {
-        setUser(session.session.user);
-        setUsername(userData.username || "");
-        setEmail(userData.email || "");
-        const { data: referralData, error: referralError } = await supabase
-          .from("referrals")
-          .select("referral_link")
-          .eq("user_id", userId)
-          .single();
-        if (referralError) {
-          console.error("Referral data fetch error:", referralError.message || referralError);
-          // Generate a fallback referral link pointing to signup page
-          const fallbackCode = userId.slice(0, 8);
-          const fallbackLink = `https://tsi.co.tz/signup?code=${fallbackCode}`;
-          setReferralLink(fallbackLink);
-        } else {
-          // Ensure existing referral link points to signup page
-          const existingLink = referralData?.referral_link || "";
-          const updatedLink = existingLink.replace(/https:\/\/tsi\.co\.tz\/refer\?code=/, "https://tsi.co.tz/signup?code=");
-          setReferralLink(updatedLink || `https://tsi.co.tz/signup?code=${userId.slice(0, 8)}`);
+        if (isMounted) {
+          setUser(session.session.user);
+          setUsername(userData.username || "");
+          setEmail(userData.email || "");
+          const { data: referralData, error: referralError } = await supabase
+            .from("referrals")
+            .select("referral_link")
+            .eq("user_id", userId)
+            .single();
+          if (referralError) {
+            console.error("Referral data fetch error:", referralError.message || referralError);
+            const fallbackCode = userId.slice(0, 8);
+            const fallbackLink = `https://tsi.co.tz/signup?code=${fallbackCode}`;
+            if (isMounted) setReferralLink(fallbackLink);
+          } else {
+            const existingLink = referralData?.referral_link || "";
+            const updatedLink = existingLink.replace(/https:\/\/tsi\.co\.tz\/refer\?code=/, "https://tsi.co.tz/signup?code=");
+            if (isMounted) setReferralLink(updatedLink || `https://tsi.co.tz/signup?code=${userId.slice(0, 8)}`);
+          }
         }
       }
 
-      // Check memory preference (simulated; replace with actual storage if needed)
+      // Check memory preference
       const memoryPref = localStorage.getItem("memoryEnabled");
-      setMemoryEnabled(memoryPref ? JSON.parse(memoryPref) : true);
+      if (isMounted) setMemoryEnabled(memoryPref ? JSON.parse(memoryPref) : true);
     };
 
     fetchUserData();
 
-    const subscription = supabase
-      .channel("user_settings")
-      .on("postgres_changes", { event: "*", schema: "public", table: "users" }, fetchUserData)
-      .subscribe();
+    // Set up subscription
+    if (supabase && isMounted) {
+      subscriptionRef.current = supabase
+        .channel("user_settings")
+        .on("postgres_changes", { event: "*", schema: "public", table: "users" }, () => {
+          if (isMounted) fetchUserData();
+        })
+        .subscribe();
+    }
 
-    return () => subscription.unsubscribe();
+    // Cleanup function (synchronous)
+    return () => {
+      isMounted = false;
+      if (subscriptionRef.current) {
+        subscriptionRef.current.unsubscribe(); // Synchronous call after subscription is set
+      }
+    };
   }, []);
 
   const handleUpdateProfile = async (e: React.FormEvent) => {
