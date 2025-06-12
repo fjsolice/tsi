@@ -24,11 +24,13 @@ const ReferAFriendPage = () => {
       }
 
       const userId = sessionData.session.user.id;
+
       const { data: userData, error: userError } = await supabase
         .from("users")
         .select("username")
         .eq("id", userId)
         .single();
+
       if (userError) {
         console.error("Error fetching user:", userError);
       } else {
@@ -40,29 +42,33 @@ const ReferAFriendPage = () => {
         .select("referral_link")
         .eq("user_id", userId)
         .single();
+
       if (referralError || !referralData) {
         const fallbackCode = userId.slice(0, 8);
         const newLink = `https://tsi.co.tz/signup?code=${fallbackCode}`;
         const { error } = await supabase
           .from("referrals")
           .insert({ user_id: userId, referral_link: newLink });
+
         if (error) console.error("Error creating referral:", error);
         else setReferralLink(newLink);
       } else {
-        // Update existing link to point to signup page
         const existingLink = referralData.referral_link || "";
         const updatedLink = existingLink.replace(/https:\/\/tsi\.co\.tz\/refer\?code=/, "https://tsi.co.tz/signup?code=");
         setReferralLink(updatedLink || `https://tsi.co.tz/signup?code=${userId.slice(0, 8)}`);
       }
 
-      // Fetch referral statistics
       const { data: referralStats, error: statsError } = await supabase
         .from("referral_stats")
         .select("registrations, investments, total_invested")
         .eq("user_id", userId)
         .single();
+
       if (statsError || !referralStats) {
-        await supabase.from("referral_stats").insert({ user_id: userId, registrations: 0, investments: 0, total_invested: 0 });
+        await supabase
+          .from("referral_stats")
+          .insert({ user_id: userId, registrations: 0, investments: 0, total_invested: 0 });
+
         setRegistrations(0);
         setInvestments(0);
         setTotalInvested(0);
@@ -73,15 +79,21 @@ const ReferAFriendPage = () => {
       }
     };
 
-    fetchData();
+    fetchData(); // ✅ call the async function inside useEffect
 
     const subscription = supabase
       .channel("referrals")
-      .on("postgres_changes", { event: "*", schema: "public", table: "referrals" }, () => fetchData())
+      .on("postgres_changes", { event: "*", schema: "public", table: "referrals" }, () => {
+        fetchData(); // Re-fetch on DB changes
+      })
       .subscribe();
 
-    return () => subscription.unsubscribe();
+    // ✅ Return a sync cleanup function
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
+
 
   const handleCopy = () => {
     navigator.clipboard.writeText(referralLink);
