@@ -8,29 +8,29 @@ import { supabase } from "../../lib/supabase"; // Adjusted path for dashboard fo
 const PlatformsPage = () => {
   const [username, setUsername] = useState("Loading...");
   const [tsiReferral] = useState("?referral=TSI");
+  const [platforms, setPlatforms] = useState([
+    {
+      name: "MetaTrader 4 (MT4)",
+      description:
+        "MetaTrader 4 is the industry standard for forex trading, offering a user-friendly interface, customizable charts, and support for automated trading with Expert Advisors (EAs). Ideal for beginners and experienced traders alike.",
+      downloadLink: "https://www.metatrader4.com/en/download/default?referral=TSI", // Fallback
+    },
+    {
+      name: "MetaTrader 5 (MT5)",
+      description:
+        "MetaTrader 5 is a multi-asset platform with advanced charting tools, more timeframes, and support for forex, stocks, and cryptocurrencies. Perfect for traders seeking versatility and algorithmic trading capabilities.",
+      downloadLink: "https://www.metatrader5.com/en/download/default?referral=TSI", // Fallback
+    },
+  ]);
 
   const getDeviceDownloadLink = (baseUrl: string) => {
+    if (typeof window === "undefined" || !navigator) return `${baseUrl}/default${tsiReferral}`;
     const userAgent = navigator.userAgent.toLowerCase();
     if (/windows/.test(userAgent)) return `${baseUrl}/windows${tsiReferral}`;
     if (/macintosh|mac os x/.test(userAgent)) return `${baseUrl}/mac${tsiReferral}`;
     if (/iphone|ipad|ipod|android/.test(userAgent)) return `${baseUrl}/mobile${tsiReferral}`;
     return `${baseUrl}/default${tsiReferral}`; // Fallback
   };
-
-  const platforms = [
-    {
-      name: "MetaTrader 4 (MT4)",
-      description:
-        "MetaTrader 4 is the industry standard for forex trading, offering a user-friendly interface, customizable charts, and support for automated trading with Expert Advisors (EAs). Ideal for beginners and experienced traders alike.",
-      downloadLink: getDeviceDownloadLink("https://www.metatrader4.com/en/download"),
-    },
-    {
-      name: "MetaTrader 5 (MT5)",
-      description:
-        "MetaTrader 5 is a multi-asset platform with advanced charting tools, more timeframes, and support for forex, stocks, and cryptocurrencies. Perfect for traders seeking versatility and algorithmic trading capabilities.",
-      downloadLink: getDeviceDownloadLink("https://www.metatrader5.com/en/download"),
-    },
-  ];
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -56,6 +56,15 @@ const PlatformsPage = () => {
     };
 
     fetchUserData();
+
+    // Update download links based on client-side device detection
+    const updatedPlatforms = platforms.map((platform) => ({
+      ...platform,
+      downloadLink: getDeviceDownloadLink(
+        platform.downloadLink.split("?")[0] // Extract base URL
+      ),
+    }));
+    setPlatforms(updatedPlatforms);
   }, []);
 
   return (
