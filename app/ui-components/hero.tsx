@@ -48,7 +48,7 @@ const Hero = () => {
           <div className="flex-shrink-0 snap-center w-full relative">
             <video
               ref={videoRef}
-              src="/videos/vid1.mp4"
+              src="/videos/tsi.mp4"
               autoPlay
               muted
               loop
@@ -101,7 +101,7 @@ const Hero = () => {
           >
             <video
               ref={videoRef}
-              src="/videos/vid1.mp4"
+              src="/videos/tsi.mp4"
               autoPlay
               muted
               loop

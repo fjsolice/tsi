@@ -6,7 +6,7 @@ const SolutionsForOrganizations: React.FC = () => {
       {/* Background Image with black overlay */}
       <div
         className="absolute inset-x-0 top-20 bottom-20 bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/organization-bg.jpg')" }}
+        style={{ backgroundImage: "url('/images/organization-hero.jpg')" }}
       ></div>
 
       {/* Black Top and Bottom Background */}
